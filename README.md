@@ -33,9 +33,8 @@ Example:
 ```
 python SiteMapMaker.py -r http://localhost -p . -i .zip,.bak,robots.txt
 ```
-```
-[http://localhost/Test/JavaScript.js](http://localhost/Test/JavaScript.js)
-[http://localhost/Test/TEST1.html](http://localhost/Test/TEST1.html)
-[http://localhost/Test/TEST2.html](http://localhost/Test/TEST2.html)
-[http://localhost/Test/CSS/style.css](http://localhost/Test/CSS/style.css)
-```
+
+>[http://localhost/Test/JavaScript.js](http://localhost/Test/JavaScript.js)
+>[http://localhost/Test/TEST1.html](http://localhost/Test/TEST1.html)
+>[http://localhost/Test/TEST2.html](http://localhost/Test/TEST2.html)
+>[http://localhost/Test/CSS/style.css](http://localhost/Test/CSS/style.css)
