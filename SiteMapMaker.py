@@ -147,9 +147,9 @@ class SiteMapMaker:
             elif o in ("-r", "--rootUrl"):
                 self._root_url = a
             elif o in ("-s", "--siteMapFile"):
-                self._site_map_file = a.split(',')
+                self._site_map_file = a
             elif o in ("-p", "--pathToScan"):
-                self._path_to_scan = a.split(',')
+                self._path_to_scan = a
             elif o in ("-i", "--ignoreFiles"):
                 self._ignore_files = tuple(a.split(','))
             elif o in ("-h", "--help"):
@@ -171,9 +171,9 @@ class SiteMapMaker:
                     file_path = os.path.join(root, filename)
                     logger().debug('\t\t- file %s (full path: %s)' % (filename, file_path))
                     if not file_path.lower().endswith(self._ignore_files):
-                        url = urllib.pathname2url(file_path)
+                        url = file_path.replace(os.path.abspath(self._path_to_scan), '', 1)  # only replace the first in case of a period
                         logger().verbose('\t\t\t- ' + url)
-                        url = url.replace(self._path_to_scan,'',1) # only replace the first in case of a period
+                        url = urllib.pathname2url(url)
                         logger().verbose('\t\t\t- ' + url)
                         url = self._root_url + url
                         logger().verbose('\t\t\t- ' + url)
@@ -182,14 +182,15 @@ class SiteMapMaker:
                         else:
                             site_map_file_handle.write("<a href=\"%s\" title=\"%s\">%s</a><br>\n" % (url, file_path, url))
         print "DONE!"
+        print "Site map file created: " + self._site_map_file
     ##################################################################################
     # Entry point for command-line execution
     ##################################################################################
 
     def main(self):
         self.print_banner()
-        print(colored.red("Recursively building site map from: " + self._path_to_scan))
-        print(colored.red("for the base URL: " + self._root_url))
+        print(colored.red("Recursively building site map from: " + str(self._path_to_scan)))
+        print(colored.red("for the base URL: " + str(self._root_url)))
         sys.stderr = open("errorlog.txt", 'w')
 
         # remove previous report
