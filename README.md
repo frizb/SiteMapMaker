@@ -4,7 +4,7 @@ Site Map Maker written in Python 2.7 and supports both Windows and Linux.
 
 ## Command Line Parameter Help
 
-'''
+```
 python.exe SiteMapMaker.py -h
 
 - Command Line Usage
@@ -27,17 +27,15 @@ Options
 Example:
  python SiteMapMaker.py -r http://foo.bar -p c:/testpath/test/ -i .zip,.bak,robots.txt
 
-'''
+```
 
 ## Sample Output
-'''
+```
 python SiteMapMaker.py -r http://localhost -p . -i .zip,.bak,robots.txt
-'''
-```html
-<pre>
-<a href="http://localhost/Test/JavaScript.js" title=".\Test\JavaScript.js">http://localhost/Test/JavaScript.js</a><br>
-<a href="http://localhost/Test/TEST1.html" title=".\Test\TEST1.html">http://localhost/Test/TEST1.html</a><br>
-<a href="http://localhost/Test/TEST2.html" title=".\Test\TEST2.html">http://localhost/Test/TEST2.html</a><br>
-<a href="http://localhost/Test/CSS/style.css" title=".\Test\CSS\style.css">http://localhost/Test/CSS/style.css</a><br>
-</pre>
+```
+```
+[http://localhost/Test/JavaScript.js](http://localhost/Test/JavaScript.js)
+[http://localhost/Test/TEST1.html](http://localhost/Test/TEST1.html)
+[http://localhost/Test/TEST2.html](http://localhost/Test/TEST2.html)
+[http://localhost/Test/CSS/style.css](http://localhost/Test/CSS/style.css)
 ```
