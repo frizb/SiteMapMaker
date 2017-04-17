@@ -39,41 +39,53 @@ class logger:
         if logger.VERBOSE == True:
             print(msg)
 
-class colored:
+
+class Colored:
+
+    @staticmethod
+    def red_back(printString):
+        return "\033[0m\033[37m\033[41m" + printString
+
+    @staticmethod
+    def black(printString):
+        return '\033[0;30m' + printString
+
     @staticmethod
     def red(printString):
-        return printString
-        # return "\033[0m\033[37m\033[41m" + printString
-
-    @staticmethod
-    def white(printString):
-        return printString
-        # return '\e[1;37m' + printString
-
-    @staticmethod
-    def blue(printString):
-        return printString
-        # return '\033[0;34m' + printString
+        return '\033[0;31m' + printString
 
     @staticmethod
     def green(printString):
-        return printString
-        # return '\033[0;32m' + printString
+        return '\033[0;32m' + printString
 
     @staticmethod
     def yellow(printString):
-        return printString
-        # return '\\033[1;33m' + printString
+        return '\033[0;33m' + printString
+
+    @staticmethod
+    def blue(printString):
+        return '\033[0;34m' + printString
+
+    @staticmethod
+    def magenta(printString):
+        return '\033[0;35m' + printString
 
     @staticmethod
     def cyan(printString):
-        return printString
-        # return '\e[0;36m' + printString
+        return '\033[0;36m' + printString
+
+    @staticmethod
+    def white(printString):
+        return '\033[0;37m'  + printString
 
     @staticmethod
     def grey(printString):
-        return printString
-        # return '\e[0;30m' + printString
+        return '\033[0;38m' + printString
+
+    @staticmethod
+    def reset(printString):
+        # return printString
+        return '\033[0;39m' + printString
 
 class SiteMapMaker:
     def __init__(self, argv):
@@ -104,9 +116,21 @@ class SiteMapMaker:
         """
         Prints banner
         """
-        print(colored.red("Site Map Maker Version: " + __version__ + " Updated: " + __lastupdated__))
+        print(Colored.red("Site Map Maker Version: " + __version__ + " Updated: " + __lastupdated__))
 
     def usage(self):
+        print Colored.red_back("RedBack")
+        print Colored.red("Red")
+        print Colored.cyan("Cyan")
+        print Colored.blue("Blue")
+        print Colored.green("green")
+        print Colored.white("White")
+        print Colored.yellow("Yellow")
+        print Colored.black("Black")
+        print Colored.grey("Grey")
+        print Colored.magenta("Magenta")
+        print Colored.reset("Reset")
+
         print "\n- Command Line Usage\n\t``# %.65s [options]``\n" % sys.argv[0]
         print "Options\n-------"
         print "====================== =============================================================="
@@ -161,7 +185,7 @@ class SiteMapMaker:
 
     def site_map_maker(self):
         # Generate Validation Data Dumps
-        logger().verbose(colored.red("Starting site map build..."))
+        logger().verbose(Colored.red("Starting site map build..."))
         with open(self._site_map_file, 'a') as site_map_file_handle:
             for root, subdirs, files in os.walk(os.path.normpath(self._path_to_scan)):
                 logger().verbose('--\nroot = ' + root)
@@ -189,8 +213,8 @@ class SiteMapMaker:
 
     def main(self):
         self.print_banner()
-        print(colored.red("Recursively building site map from: " + str(self._path_to_scan)))
-        print(colored.red("for the base URL: " + str(self._root_url)))
+        print(Colored.red("Recursively building site map from: " + str(self._path_to_scan)))
+        print(Colored.red("for the base URL: " + str(self._root_url)))
         sys.stderr = open("errorlog.txt", 'w')
 
         # remove previous report
